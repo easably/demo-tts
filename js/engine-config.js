@@ -49,6 +49,12 @@ export function getConfig() {
   return _config || FALLBACK;
 }
 
+export function apiProfile() {
+  const cfg = getConfig();
+  if (cfg.apiProfile) return cfg.apiProfile;
+  return cfg.engine === "dots" ? "dots" : "tada";
+}
+
 export function engineName() {
   return getConfig().branding?.engineName || "TTS";
 }

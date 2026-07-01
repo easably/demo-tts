@@ -1,6 +1,7 @@
 {
   "schema": "tts-demo-config/1",
   "engine": "dots",
+  "apiProfile": "dots",
   "apiBase": "",
   "branding": {
     "title": "Speech synthesis demo",

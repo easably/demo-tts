@@ -1,6 +1,7 @@
 {
   "schema": "tts-demo-config/1",
   "engine": "tada",
+  "apiProfile": "tada",
   "apiBase": "",
   "branding": {
     "title": "Speech synthesis demo",
