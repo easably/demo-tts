@@ -20,9 +20,9 @@ Details: [docs/api-contract.md](docs/api-contract.md)
 
 ## Per-engine branding
 
-Templates in `config/` — at deploy time one file is mounted as **`/demo/config.json`**:
+Templates in `config/` — mounted or **served by the engine** as `GET /demo/config.json`:
 
-- `config/tada.json` — HumeAI TADA
+- `config/tada.json` — HumeAI TADA (`deploy/demo-config/tada.json` in easably/tada)
 - `config/dots.json` — dots.TTS
 
 Schema: [config/schema.json](config/schema.json)
@@ -40,10 +40,11 @@ Docker / compose bind-mount:
 ```yaml
 volumes:
   - ./vendor/demo-tts:/app/demo:ro
-  - ./deploy/demo-config/tada.json:/app/demo/config.json:ro
+environment:
+  - TADA_DEMO_CONFIG=/app/deploy/demo-config/tada.json
 ```
 
-Update UI: bump submodule SHA in the engine repo, or `git submodule update --remote vendor/demo-tts`.
+Engine serves branding: `GET /demo/config.json` (see easably/tada `main.py`).
 
 ### 2. Shared server path (fastest — one UI for all engines)
 
