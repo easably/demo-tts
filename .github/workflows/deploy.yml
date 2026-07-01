@@ -1,13 +1,14 @@
 name: Deploy demo UI
 
+# Primary sync: easably/tada and easably/dots-tts CI rsync vendor/demo-tts →
+# ~/deploy/shared/demo-tts on every backend/demo deploy.
+# Use this workflow only for demo-only hotfixes (workflow_dispatch).
+
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
-# Sync shared demo UI to GPU server — all TTS engines can mount ~/deploy/shared/demo-tts
 # Repository variables: DEPLOY_USER, DEPLOY_HOST, DEPLOY_PORT (optional)
-# Secret: SSH_PRIVATE_KEY
+# Secret: SSH_PRIVATE_KEY (same key as tada/dots-tts repos)
 
 concurrency:
   group: deploy-demo-tts
@@ -28,7 +29,11 @@ jobs:
       - name: Validate deploy variables
         run: |
           if [ -z "${DEPLOY_USER}" ] || [ -z "${DEPLOY_HOST}" ]; then
-            echo "Set DEPLOY_USER and DEPLOY_HOST repository variables."
+            echo "Set DEPLOY_USER and DEPLOY_HOST on this repo (or rely on tada/dots-tts deploy)."
+            exit 1
+          fi
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "Set SSH_PRIVATE_KEY secret (same as tada/dots-tts)."
             exit 1
           fi
           SSH_PORT="${DEPLOY_PORT:-22}"
@@ -52,4 +57,3 @@ jobs:
             -e "ssh ${SSH_OPTS}" \
             ./ "${DEPLOY_USER}@${DEPLOY_HOST}:${SHARED_DEMO_PATH}/"
           echo "Demo UI synced to ${SHARED_DEMO_PATH}"
-          echo "Engines: set DEMO_ROOT=${SHARED_DEMO_PATH} and mount demo-config.json as /app/demo/config.json"
