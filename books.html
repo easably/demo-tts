@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Audiobook jobs — TTS demo</title>
+    <link rel="stylesheet" href="/demo/styles.css" />
+    <style>
+      .job-card { margin-top: 1rem; padding: 1rem; border: 1px solid var(--border, #333); border-radius: 8px; }
+      .job-status-running { color: #c9a227; }
+      .job-status-completed { color: #3a9; }
+      .job-status-failed { color: #e55; }
+      .progress-bar { height: 8px; background: #333; border-radius: 4px; overflow: hidden; margin: 0.5rem 0; }
+      .progress-bar > span { display: block; height: 100%; background: #5af; transition: width 0.3s; }
+      .cast-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Audiobook jobs</h1>
+      <p class="hint">
+        Long books run in the background on the GPU server. Start a job, poll status, then download WAV or MP3.
+        <a href="/">← Back to demo</a>
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="card">
+        <h2>Order narration</h2>
+        <div class="grid-2">
+          <label>Book
+            <select id="book-select"></select>
+          </label>
+          <label>Level
+            <select id="level-select"></select>
+          </label>
+          <label>Mode
+            <select id="mode-select">
+              <option value="chunks" selected>Simple — 8 chapters, one narrator (~fastest test)</option>
+              <option value="directed">Directed — 210 lines, Watson / Holmes / Wilson voices</option>
+            </select>
+          </label>
+          <label id="voice-label">Narrator voice (chunks mode)
+            <select id="voice-select"></select>
+          </label>
+          <label>Pause between parts (ms)
+            <input id="pause-ms" type="number" min="0" max="5000" value="600" />
+          </label>
+        </div>
+        <div id="cast-preview" class="hint cast-grid hidden"></div>
+        <button id="start-job" class="btn primary" type="button">Start audiobook job</button>
+        <p id="order-status" class="hint" role="status"></p>
+      </section>
+
+      <section class="card">
+        <h2>Current job</h2>
+        <div id="active-job" class="hint">No job yet.</div>
+      </section>
+
+      <section class="card">
+        <h2>Recent jobs</h2>
+        <ul id="jobs-list"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="/demo/js/book-jobs.js"></script>
+  </body>
+</html>

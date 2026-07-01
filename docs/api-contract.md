@@ -83,6 +83,40 @@ Response:
 }
 ```
 
+## `POST /api/jobs/book` (async audiobook)
+
+Submit long-form book narration. Returns immediately; poll `GET /api/jobs/{job_id}`.
+
+Request:
+
+```json
+{
+  "book_slug": "the-red-headed-league",
+  "level": "a1",
+  "mode": "chunks",
+  "voice_id": "owen_neutral",
+  "pause_ms": 600,
+  "options": {}
+}
+```
+
+`mode`: `chunks` (8 chapter blocks, one narrator) or `directed` (speaker-mapped lines from bundled direction script).
+
+Response:
+
+```json
+{
+  "job_id": "…",
+  "status": "queued",
+  "download_urls": { "wav": "/api/jobs/…/download?format=wav", "mp3": "…" },
+  "status_url": "/api/jobs/…"
+}
+```
+
+## `GET /api/jobs/{job_id}`
+
+Status: `queued` | `running` | `completed` | `failed`, with `progress` and `outputs` when done.
+
 ## Static routes
 
 Engines should serve:
