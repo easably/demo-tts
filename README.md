@@ -44,7 +44,7 @@ environment:
   - TADA_DEMO_CONFIG=/app/deploy/demo-config/tada.json
 ```
 
-Engine serves branding: `GET /demo/config.json` (see easably/tada `main.py`).
+Engines should serve branding: `GET /demo/config.json` (see easably/tada / easably/dots-tts `main.py`), reading from the per-engine `demo-config.json` mount. Do **not** commit `config.json` into the shared UI folder when multiple engines share `DEMO_UI_PATH`.
 
 ### 2. Shared server path (fastest — one UI for all engines)
 
