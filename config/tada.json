@@ -1,0 +1,42 @@
+{
+  "schema": "tts-demo-config/1",
+  "engine": "tada",
+  "apiBase": "",
+  "branding": {
+    "title": "Speech synthesis demo",
+    "pageTitle": "TADA Demo — Speech Studio",
+    "eyebrow": "HumeAI TADA · GPU inference",
+    "engineName": "TADA",
+    "subtitleHtml": "<strong>Script name</strong> (Mia, Leo) is only a dialogue label. <strong>Voice preset</strong> picks the real intonation from a reference clip — they change line by line in the showcase.",
+    "logsPageTitle": "TADA — Ops Log",
+    "logsEyebrow": "TADA GPU · monitoring"
+  },
+  "copy": {
+    "singleLineHint": "Pick a voice preset and type any sentence — fastest way to test TADA.",
+    "singleLineDefaultText": "This is TADA on our GPU server — natural speech, cloned intonation, and reliable text alignment.",
+    "dialogueCalloutHtml": "<strong>Showcase scene.</strong> Mia and Leo are script names only — each line uses a <em>different voice preset</em> (amused host, curious character, neutral narrator…). Check the script preview, then press <strong>Run scene</strong>.",
+    "speakerPlaceholder": "Mia",
+    "defaultProfileNote": "Balanced — Hume recommended defaults.",
+    "stableBookProfileNote": "Lower randomness for long-form narration."
+  },
+  "tooltips": {
+    "settings_overview": "These controls affect every Generate / Run on this page. Voice character (timbre, hiss) is chosen per line via Voice preset — inference sliders tune how {{engine}} generates speech.",
+    "spoken_text": "Text that {{engine}} will speak using the selected voice preset.",
+    "generation_params": "Fine-tune how {{engine}} generates audio — affects every run until you change them.",
+    "voice_preset": "Clones this reference clip's intonation and recording quality (including any mic hiss in the sample). Script names like Mia do not change the voice.",
+    "script_name": "Character name in the script only (e.g. Mia, Leo). Does not change the voice — pick Voice preset for intonation and timbre.",
+    "tuning_lead": "<strong>Voice preset</strong> = reference WAV (character + intonation). Different presets (<em>neutral</em> vs <em>calm</em>) are different clips — even for the same character (Mia). Use <strong>Stable book</strong> + one preset on all paragraphs for a uniform narrator."
+  },
+  "features": {
+    "studio": true,
+    "book": true,
+    "tuning": true,
+    "opsLog": true
+  },
+  "defaults": {
+    "dialogueExampleId": "coffee_nova_leo",
+    "narratorVoiceId": "nova_neutral",
+    "characterOrder": ["Nova", "Leo", "Mia", "Other"]
+  },
+  "storageKeyPrefix": "tada"
+}

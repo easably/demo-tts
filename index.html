@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTS Demo</title>
+  <link rel="stylesheet" href="/demo/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow" data-brand-eyebrow>GPU inference</p>
+      <h1 data-brand-title>Speech synthesis demo</h1>
+      <p class="subtitle" data-brand-subtitle></p>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs" role="tablist" aria-label="Demo sections">
+      <button class="tab active" data-tab="studio" data-feature="studio" type="button">Speech studio</button>
+      <button class="tab" data-tab="book" data-feature="book" type="button">Book narration</button>
+      <button class="tab" data-tab="tuning" data-feature="tuning" type="button">Voice tuning</button>
+    </nav>
+
+    <section id="panel-studio" class="panel active" data-feature="studio" aria-label="Speech studio">
+      <div id="studio-tuning-summary" class="tuning-summary-bar" aria-live="polite"></div>
+      <div class="card grid-2">
+        <div class="studio-input">
+          <div class="mode-switch" role="tablist" aria-label="Synthesis mode">
+            <button class="mode-btn" data-mode="single" type="button">One line</button>
+            <button class="mode-btn active" data-mode="dialogue" type="button">Dialogue scene</button>
+          </div>
+
+          <div id="studio-mode-single" class="studio-mode">
+            <p class="hint mode-hint" data-copy="singleLineHint"></p>
+            <label for="single-voice">Voice / intonation preset</label>
+            <select id="single-voice"></select>
+            <p id="single-voice-desc" class="hint"></p>
+            <audio id="single-voice-preview" controls class="hidden voice-preview-audio"></audio>
+
+            <label for="single-text">Text to speak</label>
+            <textarea id="single-text" rows="5" placeholder="Type something to synthesize…"></textarea>
+
+            <button id="studio-run-single" class="btn primary hidden" type="button">Generate speech</button>
+          </div>
+
+          <div id="studio-mode-dialogue" class="studio-mode active">
+            <div class="callout" data-copy-html="dialogueCalloutHtml"></div>
+
+            <div class="toolbar">
+              <label>Scene template
+                <select id="dialogue-example"></select>
+              </label>
+              <label>Pause between lines (ms)
+                <input id="dialogue-pause-ms" type="number" min="0" max="5000" value="500" />
+              </label>
+              <button id="dialogue-add-line" class="btn secondary" type="button">+ Add line</button>
+            </div>
+
+            <div id="dialogue-script-preview" class="script-preview hidden" aria-live="polite"></div>
+
+            <div id="dialogue-lines" class="line-list"></div>
+
+            <button id="studio-run-dialogue" class="btn primary" type="button">Run scene</button>
+          </div>
+        </div>
+
+        <div class="result-box">
+          <h3>Output history</h3>
+          <p class="hint result-hint">Newest audio on top — play in browser or download WAV.</p>
+          <div id="studio-status" class="status">Ready — generate speech to add items here.</div>
+          <ul id="studio-output-history" class="output-history hidden" aria-live="polite"></ul>
+          <div id="studio-sequence-details" class="results hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-book" class="panel" data-feature="book" aria-label="Book narration">
+      <div id="book-tuning-summary" class="tuning-summary-bar" aria-live="polite"></div>
+      <div class="card grid-2">
+        <div>
+          <div id="book-voice-warning" class="callout callout-warn hidden" role="status"></div>
+          <div class="toolbar toolbar-book">
+            <label>Narration template
+              <select id="book-example"></select>
+            </label>
+            <label>Pause between paragraphs (ms)
+              <input id="book-pause-ms" type="number" min="0" max="5000" value="600" />
+            </label>
+            <button id="book-unify-voices" class="btn secondary" type="button">Use one voice for all</button>
+            <button id="book-open-tuning" class="btn secondary" type="button">Voice tuning</button>
+            <button id="book-add-paragraph" class="btn secondary" type="button">+ Add paragraph</button>
+          </div>
+          <div id="book-lines" class="line-list"></div>
+          <button id="book-run-narration" class="btn primary" type="button">Generate book narration</button>
+        </div>
+        <div class="result-box">
+          <h3>Output history</h3>
+          <p class="hint result-hint">Newest narration on top.</p>
+          <ul id="book-output-history" class="output-history hidden" aria-live="polite"></ul>
+          <div id="book-sequence-details" class="results hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-tuning" class="panel" data-feature="tuning" aria-label="Voice tuning">
+      <section id="synthesis-settings-panel" class="card synthesis-settings" aria-label="Synthesis settings"></section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>API: <code>/api/tts</code> · <code>/api/dialogue</code> · <code>/api/book</code> · <code>/health</code> · <a href="/logs" data-feature="opsLog">Ops log</a></p>
+  </footer>
+
+  <script type="module" src="/demo/js/app.js"></script>
+</body>
+</html>

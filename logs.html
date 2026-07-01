@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTS — Ops Log</title>
+  <link rel="stylesheet" href="/demo/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow" data-brand-logs-eyebrow>GPU monitoring</p>
+      <h1 data-brand-logs-title>Operational log</h1>
+      <p class="subtitle">
+        Live inference stream: GPU queue, RTF, flow steps, VRAM.
+        <a href="/demo/" class="inline-link">← Demo</a>
+      </p>
+    </div>
+  </header>
+
+  <main class="container logs-page">
+    <section class="stats-grid" id="stats-grid">
+      <div class="stat-card"><span class="stat-label">GPU</span><span class="stat-value" id="stat-gpu">—</span></div>
+      <div class="stat-card"><span class="stat-label">VRAM</span><span class="stat-value" id="stat-vram">—</span></div>
+      <div class="stat-card"><span class="stat-label">Queue</span><span class="stat-value" id="stat-queue">—</span></div>
+      <div class="stat-card"><span class="stat-label">Model</span><span class="stat-value stat-small" id="stat-model">—</span></div>
+      <div class="stat-card"><span class="stat-label">Last RTF</span><span class="stat-value" id="stat-rtf">—</span></div>
+      <div class="stat-card"><span class="stat-label">Requests</span><span class="stat-value" id="stat-requests">—</span></div>
+    </section>
+
+    <div class="card logs-toolbar">
+      <div class="toolbar-row">
+        <label class="inline-label">
+          <input type="checkbox" id="live-toggle" checked /> Live
+        </label>
+        <label class="inline-label">
+          Event
+          <select id="event-filter">
+            <option value="">All</option>
+            <option value="request_queued">request_queued</option>
+            <option value="request_started">request_started</option>
+            <option value="line_done">line_done</option>
+            <option value="request_done">request_done</option>
+            <option value="request_failed">request_failed</option>
+            <option value="engine_ready">engine_ready</option>
+          </select>
+        </label>
+        <button id="btn-clear" class="btn secondary" type="button">Clear</button>
+        <button id="btn-refresh" class="btn secondary" type="button">Refresh</button>
+        <span id="conn-status" class="conn-status">Connecting…</span>
+      </div>
+    </div>
+
+    <div class="card logs-table-wrap" id="logs-scroll">
+      <table class="logs-table" id="logs-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Event</th>
+            <th>Queue / wait</th>
+            <th>Line</th>
+            <th>Voice / speaker</th>
+            <th>Inference</th>
+            <th>RTF</th>
+            <th>Flow</th>
+            <th>VRAM</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody id="logs-body"></tbody>
+      </table>
+      <p id="logs-empty" class="hint logs-empty">Waiting for events… Generate speech on the <a href="/demo/">demo</a>.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>API: <code>/api/ops/logs</code> · <code>/api/ops/logs/stream</code> · <code>/api/ops/status</code></p>
+  </footer>
+
+  <script type="module" src="/demo/js/logs-bootstrap.js"></script>
+</body>
+</html>

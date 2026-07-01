@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/easably/demo-tts/config/schema.json",
+  "title": "TTS demo engine config",
+  "type": "object",
+  "required": ["schema", "engine", "branding", "features"],
+  "properties": {
+    "schema": { "const": "tts-demo-config/1" },
+    "engine": { "type": "string", "description": "Engine id: tada, dots, …" },
+    "apiBase": {
+      "type": "string",
+      "description": "Optional API prefix (empty = same origin)"
+    },
+    "branding": {
+      "type": "object",
+      "required": ["title", "pageTitle", "eyebrow", "engineName"],
+      "properties": {
+        "title": { "type": "string" },
+        "pageTitle": { "type": "string" },
+        "eyebrow": { "type": "string" },
+        "engineName": { "type": "string" },
+        "subtitleHtml": { "type": "string" },
+        "logsPageTitle": { "type": "string" },
+        "logsEyebrow": { "type": "string" }
+      }
+    },
+    "copy": { "type": "object" },
+    "tooltips": { "type": "object" },
+    "features": {
+      "type": "object",
+      "properties": {
+        "studio": { "type": "boolean" },
+        "book": { "type": "boolean" },
+        "tuning": { "type": "boolean" },
+        "opsLog": { "type": "boolean" }
+      }
+    },
+    "defaults": { "type": "object" },
+    "storageKeyPrefix": { "type": "string" }
+  }
+}

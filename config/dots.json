@@ -1,0 +1,38 @@
+{
+  "schema": "tts-demo-config/1",
+  "engine": "dots",
+  "apiBase": "",
+  "branding": {
+    "title": "Speech synthesis demo",
+    "pageTitle": "dots.TTS Demo — Speech Studio",
+    "eyebrow": "dots.TTS · GPU inference",
+    "engineName": "dots.TTS",
+    "subtitleHtml": "<strong>Voice preset</strong> selects the reference clip for intonation and timbre. Script names are dialogue labels only.",
+    "logsPageTitle": "dots.TTS — Ops Log",
+    "logsEyebrow": "dots.TTS GPU · monitoring"
+  },
+  "copy": {
+    "singleLineHint": "Pick a voice preset and type any sentence — fastest way to test dots.TTS.",
+    "singleLineDefaultText": "This is dots.TTS on our GPU server — natural speech with cloned intonation.",
+    "dialogueCalloutHtml": "<strong>Showcase scene.</strong> Each line can use a different voice preset. Edit the script, then press <strong>Run scene</strong>.",
+    "speakerPlaceholder": "Speaker",
+    "stableBookProfileNote": "Lower randomness for long-form narration."
+  },
+  "tooltips": {
+    "settings_overview": "These controls affect every Generate / Run on this page. Voice preset picks the reference clip; sliders tune how {{engine}} generates speech.",
+    "spoken_text": "Text that {{engine}} will speak using the selected voice preset.",
+    "generation_params": "Fine-tune how {{engine}} generates audio — affects every run until you change them."
+  },
+  "features": {
+    "studio": true,
+    "book": true,
+    "tuning": true,
+    "opsLog": true
+  },
+  "defaults": {
+    "dialogueExampleId": "",
+    "narratorVoiceId": "nora_neutral",
+    "characterOrder": ["Nora", "Owen", "Mia", "Leo", "Other"]
+  },
+  "storageKeyPrefix": "dots"
+}

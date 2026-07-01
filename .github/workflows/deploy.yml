@@ -1,0 +1,55 @@
+name: Deploy demo UI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Sync shared demo UI to GPU server — all TTS engines can mount ~/deploy/shared/demo-tts
+# Repository variables: DEPLOY_USER, DEPLOY_HOST, DEPLOY_PORT (optional)
+# Secret: SSH_PRIVATE_KEY
+
+concurrency:
+  group: deploy-demo-tts
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      DEPLOY_USER: ${{ vars.DEPLOY_USER }}
+      DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
+      DEPLOY_PORT: ${{ vars.DEPLOY_PORT }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate deploy variables
+        run: |
+          if [ -z "${DEPLOY_USER}" ] || [ -z "${DEPLOY_HOST}" ]; then
+            echo "Set DEPLOY_USER and DEPLOY_HOST repository variables."
+            exit 1
+          fi
+          SSH_PORT="${DEPLOY_PORT:-22}"
+          echo "SSH_PORT=${SSH_PORT}" >> "$GITHUB_ENV"
+          echo "SHARED_DEMO_PATH=/home/${DEPLOY_USER}/deploy/shared/demo-tts" >> "$GITHUB_ENV"
+          echo "SSH_OPTS=-i ~/.ssh/deploy_key -p ${SSH_PORT} -o ConnectTimeout=30" >> "$GITHUB_ENV"
+
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${SSH_PORT}" "${DEPLOY_HOST}" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Sync shared demo UI
+        run: |
+          ssh ${SSH_OPTS} "${DEPLOY_USER}@${DEPLOY_HOST}" "mkdir -p ${SHARED_DEMO_PATH}"
+          rsync -az --delete \
+            --exclude 'config/' \
+            --exclude '.git/' \
+            -e "ssh ${SSH_OPTS}" \
+            ./ "${DEPLOY_USER}@${DEPLOY_HOST}:${SHARED_DEMO_PATH}/"
+          echo "Demo UI synced to ${SHARED_DEMO_PATH}"
+          echo "Engines: set DEMO_ROOT=${SHARED_DEMO_PATH} and mount demo-config.json as /app/demo/config.json"
