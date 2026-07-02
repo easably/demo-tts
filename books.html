@@ -29,32 +29,37 @@
     <main class="layout">
       <section class="card">
         <h2>Demo samples</h2>
-        <p class="hint">Pre-rendered MP3 from <em>The Red-Headed League</em> A1 — compare engines without waiting for a full job.</p>
-        <h3>Chapter 1</h3>
+        <p class="hint">
+          Имена файлов: <code>full-book-tada-{голоса}-{режим}.mp3</code> —
+          <code>one-voice-owen-chunks</code> = один рассказчик;
+          <code>multi-voice-cast-directed</code> = постановка по ролям.
+          <a href="/demo/examples/audiobooks/the-red-headed-league/a1/README.md">README</a>
+        </p>
+        <h3>Chapter 1 (part-01)</h3>
         <div class="demo-sample">
-          <strong>TADA</strong> — Owen neutral (~2 min)
-          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/part-01-tada-owen-neutral.mp3"></audio>
+          <strong>part-01-tada-one-voice-owen-chunks</strong> — один голос, не постановка
+          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/part-01-tada-one-voice-owen-chunks.mp3"></audio>
         </div>
         <div class="demo-sample">
-          <strong>TADA — directed ch.1</strong> (28 lines, Watson / Holmes / Wilson)
-          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/part-01-directed-tada.mp3"></audio>
+          <strong>part-01-tada-multi-voice-cast-directed</strong> — постановка (Watson / Holmes / Wilson)
+          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/part-01-tada-multi-voice-cast-directed.mp3"></audio>
         </div>
         <div class="demo-sample">
-          <strong>dots.tts</strong> — Owen neutral (~1:44)
-          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/part-01-dots-owen-neutral.mp3"></audio>
+          <strong>part-01-dots-one-voice-owen-chunks</strong> — dots, один голос
+          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/part-01-dots-one-voice-owen-chunks.mp3"></audio>
         </div>
-        <h3>Full book</h3>
+        <h3>Full book (8 chapters)</h3>
         <div class="demo-sample">
-          <strong>TADA — one narrator</strong> (chunks, Owen only — <em>not</em> по постановке)
-          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/full-book-tada-owen-neutral-chunks.mp3"></audio>
-        </div>
-        <div class="demo-sample">
-          <strong>TADA — по постановке</strong> (directed, Watson / Holmes / Wilson, 210 lines)
-          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/full-book-tada-directed.mp3"></audio>
+          <strong>full-book-tada-one-voice-owen-chunks</strong> — один голос Owen, не постановка
+          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/full-book-tada-one-voice-owen-chunks.mp3"></audio>
         </div>
         <div class="demo-sample">
-          <strong>dots.tts — one narrator</strong> (chunks, ~14 min)
-          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/full-book-dots-owen-neutral-chunks.mp3"></audio>
+          <strong>full-book-tada-multi-voice-cast-directed</strong> — постановка, 210 реплик
+          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/full-book-tada-multi-voice-cast-directed.mp3"></audio>
+        </div>
+        <div class="demo-sample">
+          <strong>full-book-dots-one-voice-owen-chunks</strong> — dots, один голос
+          <audio controls preload="metadata" src="/demo/examples/audiobooks/the-red-headed-league/a1/full-book-dots-one-voice-owen-chunks.mp3"></audio>
         </div>
       </section>
 
@@ -69,8 +74,8 @@
           </label>
           <label>Mode
             <select id="mode-select">
-              <option value="chunks" selected>Simple — 8 chapters, one narrator (~fastest test)</option>
-              <option value="directed">Directed — 210 lines, Watson / Holmes / Wilson voices</option>
+              <option value="chunks" selected>chunks — один рассказчик (one-voice)</option>
+              <option value="directed">directed — постановка, роли (multi-voice-cast)</option>
             </select>
           </label>
           <label id="voice-label">Narrator voice (chunks mode)

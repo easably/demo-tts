@@ -1,22 +1,27 @@
-# The Red-Headed League — A1 demo samples
+# Имена файлов demo-аудио
 
-Pre-rendered audiobook excerpts for the shared demo UI (`/books` page).
+Шаблон:
 
-## Режимы
+```
+{объём}-{движок}-{голоса}-{режим}.mp3
+```
 
-| Режим API | Файл | Голоса |
-|-----------|------|--------|
-| **chunks** | `full-book-tada-owen-neutral-chunks.mp3` | **Один** — `owen_neutral` на всю книгу |
-| **directed** | `full-book-tada-directed.mp3` | **По постановке** — Watson / Holmes / Wilson (`cast.json`) |
-| **directed** (глава 1) | `part-01-directed-tada.mp3` | то же, 28 реплик |
+| Часть | Значение | Примеры |
+|-------|----------|---------|
+| **объём** | `full-book` — вся книга (8 глав); `part-01` — глава 1 | |
+| **движок** | `tada` · `dots` | |
+| **голоса** | `one-voice-owen` — один рассказчик (Owen neutral) · `multi-voice-cast` — по ролям (Watson/Holmes/Wilson) | |
+| **режим** | `chunks` — простое чтение блоками · `directed` — **постановка** из `direction.json` + `cast.json` | |
 
-| File | Engine | Content | Duration |
-|------|--------|---------|----------|
-| `part-01-tada-owen-neutral.mp3` | TADA | Ch.1, chunks, one voice | ~2:02 |
-| `part-01-directed-tada.mp3` | TADA | Ch.1, **directed** (roles) | ~1:58 |
-| `part-01-dots-owen-neutral.mp3` | dots.tts | Ch.1, chunks | ~1:44 |
-| `full-book-tada-owen-neutral-chunks.mp3` | TADA | Full book, **one narrator** | ~15:54 |
-| `full-book-tada-directed.mp3` | TADA | Full book, **voice cast** | ~16:20 |
-| `full-book-dots-owen-neutral-chunks.mp3` | dots.tts | Full book, one narrator | ~13:47 |
+## Файлы
 
-Cast (directed): watson→owen, holmes→leo, wilson→nora, other→nora_soft.
+| Файл | По-русски |
+|------|-----------|
+| `full-book-tada-one-voice-owen-chunks.mp3` | TADA, вся книга, **один голос**, не постановка |
+| `full-book-tada-multi-voice-cast-directed.mp3` | TADA, вся книга, **постановка**, разные роли |
+| `full-book-dots-one-voice-owen-chunks.mp3` | dots.tts, вся книга, один голос |
+| `part-01-tada-one-voice-owen-chunks.mp3` | TADA, глава 1, один голос |
+| `part-01-tada-multi-voice-cast-directed.mp3` | TADA, глава 1, постановка |
+| `part-01-dots-one-voice-owen-chunks.mp3` | dots, глава 1, один голос |
+
+Cast (directed): watson→owen_neutral, holmes→leo_neutral, wilson→nora_neutral, other→nora_soft.
