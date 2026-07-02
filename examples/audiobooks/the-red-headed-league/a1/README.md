@@ -7,7 +7,7 @@ Pre-rendered audiobook excerpts for the shared demo UI (`/books` page).
 | `part-01-tada-owen-neutral.mp3` | TADA | `owen_neutral` | Chapter 1 — chunks mode | ~2:02 |
 | `part-01-directed-tada.mp3` | TADA | voice cast | Chapter 1 directed (28 utterances) | ~1:58 |
 | `part-01-dots-owen-neutral.mp3` | dots.tts | `owen_neutral` | Same chapter | ~1:44 |
-| `full-book-tada-owen-neutral-chunks.mp3` | TADA | `owen_neutral` | All 8 chapters (`chunks` mode) | ~15:48 |
+| `full-book-tada-owen-neutral-chunks.mp3` | TADA | `owen_neutral` | All 8 chapters, sentence-boundary blocks (62) | ~15:54 |
 | `full-book-dots-owen-neutral-chunks.mp3` | dots.tts | `owen_neutral` | All 8 chapters (`chunks` mode) | ~13:47 |
 
 Source text: `easably/tada` → `books/the-red-headed-league/a1/chunks.json`.
